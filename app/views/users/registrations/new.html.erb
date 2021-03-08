@@ -1,32 +1,32 @@
 <h2 class="text-center">Sign up</h2>
-<div class="container text-center">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= render "users/shared/error_messages", resource: resource %>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "users/shared/error_messages", resource: resource %>
+                <div class="field">
+                    <br />
+                    <%= f.email_field :name, autofocus: true, autocomplete: "name" , placeholder:"Full Name", class:"form-control" %>
+                </div>
 
-        <div class="field m-2">
-           <br />
-            <%= f.email_field :name, autofocus: true, autocomplete: "name" , placeholder:"Full Name" %>
+                <div class="field">
+                    <br />
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email" , placeholder:"Email", class:"form-control" %>
+                </div>
+
+                <div class="field">
+                <br />
+                    <%= f.password_field :password, autocomplete: "new-password" , placeholder:"Password", class:"form-control" %>
+                </div>
+
+                <div class="actions">
+                    <%= f.submit "Sign up",class:"btn btn-danger btn-block mt-4" %>
+                </div>
+            <% end %>
+            <div class="mt-3">
+                <%= link_to "Sign in with Facebook","#",class:"btn btn-primary btn-block" %>
+            </div>
         </div>
-
-        <div class="field m-2">
-            <br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" , placeholder:"Email" %>
-        </div>
-
-        <div class="field m-2">
-           <br />
-            <%= f.password_field :password, autocomplete: "new-password" , placeholder:"Password" %>
-        </div>
-
-        <div class="actions">
-            <%= f.submit "Sign up",class:"btn btn-danger m-2" %>
-        </div>
-        <div class="actions">
-            <%= f.submit "Sign in with Facebook",class:"btn btn-primary m-2" %>
-        </div>
-
-    <% end %>
-
-
+    </div>
 </div>
