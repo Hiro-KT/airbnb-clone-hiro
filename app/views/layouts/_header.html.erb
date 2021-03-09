@@ -5,14 +5,22 @@
         <form class="form-inline">
             <input class="form-control mr-md-2" type="search" placeholder="Where are you going?" aria-label="Search">
         </form>
-
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <%= link_to "Become a host" , "#" , class:"btn btn-outline-success mr-2" %>
+            </li>
+
             <% if user_signed_in? %>
-                <li class="nav-item">
-                    <%= link_to "Become a host" , "#" , class:"btn btn-outline-success" %>
-                </li>
-                <li>
-                    <%= link_to "Log Out" , destroy_user_session_path , method: :delete , class:"nav-item nav-link" %>
+                <li class="nav-item dropdown mr-3">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= current_user.name %>
+                    </a>
+
+                    <div class="dropdown-menu mr-3" aria-labelledby="navbarDropdown">
+                        <%= link_to "Profile",edit_user_registration_path(current_user), class: "nav-item dropdown-item " %>
+                        <div class="dropdown-divider"></div>
+                        <%= link_to "Log Out" , destroy_user_session_path , method: :delete , class:"nav-item dropdown-item" %>
+                    </div>
                 </li>
             <% else %>
                 <li class="nav-item">
