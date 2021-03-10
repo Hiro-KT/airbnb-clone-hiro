@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-6">
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
+                <%= render "shared/devise_messages", resource: resource %>
                 <div class="field mt-3">
                     <%= f.email_field :email, autofocus: true, autocomplete: "email" , placeholder:"Email", class:"form-control" %>
                 </div>

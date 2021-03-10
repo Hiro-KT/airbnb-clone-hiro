@@ -3,18 +3,18 @@
     <div class="row justify-content-center">
         <div class="col-6">
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                <%= render "users/shared/error_messages", resource: resource %>
+                <%= render "shared/devise_messages", resource: resource %>
 
                 <div class="field">
-                    <%= f.text_field :name, autofocus: true, autocomplete: "name" , placeholder:"Full Name", class:"form-control" %>
+                    <%= f.text_field :name, autofocus: true, autocomplete: "name" , placeholder:"Full Name", class:"form-control mt-2" %>
                 </div>
 
                 <div class="field">
-                    <%= f.email_field :email, autofocus: true, autocomplete: "email" , placeholder:"Email", class:"form-control mt-2" %>
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email" , placeholder:"Email", class:"form-control mt-3" %>
                 </div>
 
                 <div class="field">
-                    <%= f.password_field :password, autocomplete: "new-password" , placeholder:"Password", class:"form-control mt-2" %>
+                    <%= f.password_field :password, autocomplete: "new-password" , placeholder:"Password", class:"form-control mt-3" %>
                 </div>
 
                 <div class="actions">
