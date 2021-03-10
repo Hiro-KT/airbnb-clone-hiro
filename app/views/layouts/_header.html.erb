@@ -17,7 +17,7 @@
                     </a>
 
                     <div class="dropdown-menu mr-3" aria-labelledby="navbarDropdown">
-                        <%= link_to "Profile",edit_user_registration_path(current_user), class: "nav-item dropdown-item " %>
+                        <%= link_to "Profile", edit_user_registration_path(current_user) , class: "nav-item dropdown-item " %>
                         <div class="dropdown-divider"></div>
                         <%= link_to "Log Out" , destroy_user_session_path , method: :delete , class:"nav-item dropdown-item" %>
                     </div>

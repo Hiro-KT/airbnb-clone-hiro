@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row">
+        <div class="container mt-5 col-2">
+            <div class="card" style="width: 15rem">
+                <%= image_tag gravatar_for(@user), alt: @user.name %>
+                <div class="media-body">
+                    <%= link_to "Update Photo", "#", class:"text-center m-5" %>
+                </div>
+                <div class="card-footer">
+                    <h5 class="text-center"><%= @user.name %> confirmed</h4>
+                </div>
+                <div class="col mt-3">
+                    <p>Facebook</p>
+                </div>
+                <div class="col mt-1">
+                    <p>Phone Number</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4 col-8">
+            <h2 class="m-2">Hi, I'm <%= @user.name %></h2>
+            <hr>
+            <%= link_to "Listings(1)", "#" , class:"btn" %>
+
+            <div class="row">
+                <div class="col-4">
+                    <div class="card m-2">
+                        <%= image_tag "/assets/hotel1.jpg" , class:"card-img-top"%>
+                        <div class="card-body">
+                            <%= link_to "Comfort Hotel","#",class:"card-title"%>
+                        </div>
+                        <div class="card-body">
+                            $200 - Apartment - 2 Bedrooms
+                        </div>
+                        <div class="card-body">
+                            3 Reviews(temporary)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            <%= link_to "Reviews From Guests(1)", "#", class:"btn" %>
+            <div class="row">
+                <div class="col-4">
+                    <%= image_tag "/assets/Woman1.jpg" , class:"card-img-bottom rounded-circle"%>
+                    <%= link_to "Guest","#",class:"btn text-center"%>
+                </div>
+                <div class="col-4">
+                    3 Reviews(temporary)<br>
+                    <p class="mt-2">I love this room.</p>
+                </div>
+            </div>
+
+            <hr>
+            <%= link_to "Reviews From Hosts(0)", "#", class:"btn" %>
+        </div>
+    </div>
+</div>
