@@ -7,10 +7,34 @@ class RoomsController < ApplicationController
     @room = current_user.rooms.new(room_params)
 
     if @room.save
-      redirect_to root_url
+      redirect_to room_room_url(current_user)
     else
       render 'new'
     end
+  end
+
+  def room
+    @room = Room.find(params[:id])
+  end
+
+  def price
+    @room = Room.find(params[:id])
+  end
+
+  def description
+    @room = Room.find(params[:id])
+  end
+
+  def photos
+    @room = Room.find(params[:id])
+  end
+
+  def amenities
+    @room = Room.find(params[:id])
+  end
+
+  def location
+    @room = Room.find(params[:id])
   end
 
   def room_params

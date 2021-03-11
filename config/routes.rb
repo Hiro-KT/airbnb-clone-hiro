@@ -9,5 +9,14 @@ Rails.application.routes.draw do
   }
 
   resources :users
-  resources :rooms
+  resources :rooms do
+    member do
+      get 'room'
+      get 'price'
+      get 'description'
+      get 'photos'
+      get 'amenities'
+      get 'location'
+    end
+  end
 end

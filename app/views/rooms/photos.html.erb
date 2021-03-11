@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <%= render "layouts/sidebar" %>
+        <div class="container mt-5 col-8">
+            <div class="card">
+                <div class="card-header"><h5>Photos</h5></div>
+                <div class="container">
+                    <%= form_for @room do |f| %>
+                        <div class="row">
+                            <div class="col-6">
+                                <%= f.label :room_photo, class:"mt-2" %>
+                                <%= f.file_field :image, class:"mb-2" %>
+                            </div>
+                            <div class="col-12">
+                                <%= f.submit "Save", class:"btn btn-info mt-2 mb-2" %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
