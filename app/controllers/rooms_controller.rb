@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(room_params)
+    @room = current_user.rooms.new(room_params)
 
     if @room.save
       redirect_to root_url
