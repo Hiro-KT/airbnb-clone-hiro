@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_081137) do
+ActiveRecord::Schema.define(version: 2021_03_11_062355) do
+
+  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "home_type"
+    t.string "room_type"
+    t.integer "guest_count"
+    t.integer "bedroom_count"
+    t.integer "bathroom_count"
+    t.boolean "is_active"
+    t.float "price"
+    t.string "listing_name"
+    t.text "summary"
+    t.string "address"
+    t.boolean "has_tv"
+    t.boolean "has_kitchen"
+    t.boolean "has_internet"
+    t.boolean "has_heating"
+    t.boolean "has_air_conditioning"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"

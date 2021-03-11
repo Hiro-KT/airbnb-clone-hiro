@@ -1,61 +1,44 @@
 <div class="container mt-5">
-
     <div class="card">
         <div class="card-header">
         <h5>Create your beautiful place</h5>
         </div>
         <div class="container">
             <div class="row">
+
                 <div class="col-3 m-3">
-                    <h5>Home Type</h5>
-                    <select class="custom-select custom-select-lg mb-3">
-                        <option selected>Select</option>
-                        <option value="1">Apartment</option>
-                        <option value="2">House</option>
-                        <option value="3">Bed & Breakfast</option>
-                    </select>
-                </div>
-                <div class="col-3 m-3">
-                    <h5>Room Type</h5>
-                    <select class="custom-select custom-select-lg mb-3">
-                        <option selected>Select</option>
-                        <option value="1">Entire</option>
-                        <option value="2">Privete</option>
-                        <option value="3">Shared</option>
-                    </select>
+                    <%= form_for @room do |f| %>
+                        <%= f.label :home_type %><br>
+                        <%= f.select :home_type, {'Apartment': 'Apartment', 'House': 'House', 'Bed & Breakfast': 'Bed & Breakfast'}, { include_blank: 'Select...'} %>
+                    <% end %>
                 </div>
 
                 <div class="col-3 m-3">
-                    <h5>Guests</h5>
-                     <select class="custom-select custom-select-lg mb-3">
-                        <option selected>Select</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4+</option>
-                    </select>
+                    <%= form_for @room do |f| %>
+                        <%= f.label :room_type %><br>
+                        <%= f.select :room_type, {'Entire': 'Entire', 'Private': 'Private', 'Shared': 'Shared'}, { include_blank: 'Select...'} %>
+                    <% end %>
                 </div>
 
                 <div class="col-3 m-3">
-                    <h5>Bedrooms</h5>
-                     <select class="custom-select custom-select-lg mb-3">
-                        <option selected>Select</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4+</option>
-                    </select>
+                    <%= form_for @room do |f| %>
+                        <%= f.label :guests %><br>
+                        <%= f.select :guest_count, {'1': '1', '2': '2', '3': '3', '4+': '4+'}, { include_blank: 'Select...'} %>
+                    <% end %>
                 </div>
 
                 <div class="col-3 m-3">
-                    <h5>Bathrooms</h5>
-                     <select class="custom-select custom-select-lg mb-3">
-                        <option selected>Select</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4+</option>
-                    </select>
+                    <%= form_for @room do |f| %>
+                        <%= f.label :bedrooms %><br>
+                        <%= f.select :bedroom_count, {'1': '1', '2': '2', '3': '3', '4+': '4+'}, { include_blank: 'Select...'} %>
+                    <% end %>
+                </div>
+
+                <div class="col-3 m-3">
+                    <%= form_for @room do |f| %>
+                        <%= f.label :bathrooms %><br>
+                        <%= f.select :bathroom_count, {'1': '1', '2': '2', '3': '3', '4+': '4+'}, { include_blank: 'Select...'} %>
+                    <% end %>
                 </div>
 
             </div>
