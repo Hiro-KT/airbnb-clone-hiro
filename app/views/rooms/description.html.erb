@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <%= render "layouts/sidebar" %>
+        <div class="container mt-5 col-8">
+            <div class="card">
+                <div class="card-header"><h5>Description</h5></div>
+                <div class="container">
+                    <%= form_for @room do |f| %>
+                        <div class="row">
+                            <div class="col-12">
+                                <%= f.label :listing_name, class:"mt-2" %><br>
+                                <%= f.text_field :listing_name, class:"form-control mb-3 w-100" %>
+                            </div>
+                            <div class="col-12">
+                                <%= f.label :summary, class:"mt-2" %><br>
+                                <%= f.text_area :summary, class:"form-control mb-4 w-100" %>
+                            </div>
+
+                            <div class="col-12">
+                                <%= f.submit "Save", class:"btn btn-info mb-4" %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
