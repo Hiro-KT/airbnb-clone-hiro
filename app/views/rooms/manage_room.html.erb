@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <%= render "layouts/sidebar_manage_room" %>
+        <div class="container mt-5 col-8">
+            <div class="card">
+                <div class="card-header"><h5>Your Rooms</h5></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-9 mt-4">
+                            <%= image_tag gravatar_for(current_user), alt: current_user.name, class:"nav-item m-1" %>
+                            <%= link_to "Name of hotel", "#", class:"m-1" %>
+                        </div>
+                        <div class="col-3">
+                            <%= link_to "Update", "#", class:"btn btn-info mt-5" %>
+                        </div>
+                    </div>
+                    <hr>
+                      <div class="row">
+                        <div class="col-9 mt-1">
+                            <%= image_tag gravatar_for(current_user), alt: current_user.name, class:"nav-item m-1" %>
+                            <%= link_to "Name of hotel", "#", class:"m-1" %>
+                        </div>
+                        <div class="col-3">
+                            <%= link_to "Update", "#", class:"btn btn-info mt-3" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

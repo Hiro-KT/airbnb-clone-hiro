@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get 'photos'
       get 'amenities'
       get 'location'
+      get 'manage_room'
     end
   end
 
