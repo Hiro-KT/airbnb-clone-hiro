@@ -1,24 +1,24 @@
 <div class="container mt-5 col-3">
     <div class="card" style="width: 15rem">
         <div class="col mt-3">
-            <%=link_to "Room", room_room_path(current_user), class:"color-info" %>
+            <%=link_to "Room", room_room_path(@room), class:"color-info" %>
         </div>
         <div class="col mt-3">
-            <%=link_to "Price", price_room_path(current_user), class:"color-info" %>
+            <%=link_to "Price", price_room_path(@room), class:"color-info" %>
         </div>
         <div class="col mt-3">
-            <%=link_to "Description", description_room_path(current_user), class:"color-info" %>
+            <%=link_to "Description", description_room_path(@room), class:"color-info" %>
         </div>
         <div class="col mt-3">
-            <%=link_to "Photos", photos_room_path(current_user), class:"color-info" %>
+            <%=link_to "Photos", photos_room_path(@room), class:"color-info" %>
         </div>
         <div class="col mt-3">
-            <%=link_to "Amenities", amenities_room_path(current_user), class:"color-info" %>
+            <%=link_to "Amenities", amenities_room_path(@room), class:"color-info" %>
         </div>
         <div class="col mt-3">
-            <%=link_to "Location", location_room_path(current_user), class:"color-info" %>
+            <%=link_to "Location", location_room_path(@room), class:"color-info" %>
         </div>
         <hr class="m-2">
-        <%= link_to "Publish", "#", class:"btn btn-info m-2"%>
+        <button type="submit" class="btn btn-info m-2">Publish</button>
     </div>
 </div>

@@ -7,7 +7,7 @@ class RoomsController < ApplicationController
     @room = current_user.rooms.new(room_params)
 
     if @room.save
-      redirect_to room_room_url(current_user)
+      redirect_to room_room_url(@room)
     else
       render 'new'
     end
@@ -37,7 +37,18 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
+  def update
+    @room = Room.find(params[:id])
+
+    if @room.update(room_params)
+      flash[:success] = "Saved Updates!"
+      redirect_back(fallback_location: request.referer)
+    else
+      flash[:alert] = "Something is wrong!"
+    end
+  end
+
   def room_params
-    params.require(:room).permit(:home_type, :room_type, :guest_count, :bedroom_count, :bathroom_count)
+    params.require(:room).permit(:home_type, :room_type, :guest_count, :bedroom_count, :bathroom_count, :price, :listing_name, :summary, :address, :has_tv, :has_kitchen, :has_internet, :has_heating, :has_air_conditioning)
   end
 end
