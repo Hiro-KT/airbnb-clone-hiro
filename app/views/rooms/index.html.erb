@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <%= render "layouts/sidebar_manage_room" %>
+        <div class="container mt-5 col-8">
+            <div class="card">
+                <div class="card-header"><h5>Your Rooms</h5></div>
+                <div class="container">
+                    <div class="row">
+                        <% @rooms.each do |room| %>
+                            <div class="col-9 mt-2">
+                                <%= image_tag gravatar_for(current_user), alt: current_user.name, class:"nav-item" %>
+                                Name of Hotel
+                            </div>
+                            <div class="col-3">
+                                <%= link_to "Update", room_room_path(room) , class:"btn btn-info mt-4" %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
