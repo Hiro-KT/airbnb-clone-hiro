@@ -37,7 +37,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
-  def manage_room
+  def index
     @rooms = current_user.rooms
   end
 
