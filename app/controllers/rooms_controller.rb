@@ -38,7 +38,7 @@ class RoomsController < ApplicationController
   end
 
   def manage_room
-    @rooms = Room.all
+    @rooms = current_user.rooms
   end
 
   def update
