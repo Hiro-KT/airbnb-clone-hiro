@@ -19,6 +19,9 @@
             <%=link_to "Location", location_room_path(@room), class:"color-info" %>
         </div>
         <hr class="m-2">
-        <button type="submit" class="btn btn-info m-2">Publish</button>
+        <%= form_for @room do |f| %>
+            <%= f.hidden_field :is_active, value: true %>
+            <%= f.submit "Publish",class:"btn btn-info mt-1 mb-1 w-100", disabled: !is_ready?(@room) %>
+        <% end %>
     </div>
 </div>
