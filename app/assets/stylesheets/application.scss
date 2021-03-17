@@ -1,8 +1,17 @@
 @import "bootstrap";
 @import "toastr";
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+@import "font-awesome";
 
 .navbar-brand{
   font-family: 'Dancing Script', cursive;
   font-size: 30px;
+}
+
+.fa-home,.fa-user,.fa-bed,.fa-bath{
+  font-size:30px;
+}
+
+.line-through {
+  text-decoration: line-through;
 }
