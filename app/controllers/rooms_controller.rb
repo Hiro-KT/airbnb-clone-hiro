@@ -1,6 +1,14 @@
 class RoomsController < ApplicationController
+  def index
+    @rooms = current_user.rooms
+  end
+
   def new
     @room = Room.new
+  end
+
+  def show
+    @room = Room.find(params[:id])
   end
 
   def create
@@ -38,9 +46,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
-  def index
-    @rooms = current_user.rooms
-  end
+  
 
   def update
     @room = Room.find(params[:id])
