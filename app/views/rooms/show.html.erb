@@ -2,41 +2,20 @@
     <div class="row">
         <div class="col-12 mt-3">
             <% if @room.photos.length > 0 %>
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <% @room.photos.each do |photo| %>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="<%= photo.id %>"></li>
-                        <% end %>
-                    </ol>
-                    <div class="carousel-inner">
-                        <% @room.photos.each do |photo| %>
-                            <div class="carousel-item <%= photo.id == @room.photos.first.id ? 'active' : '' %>">
-                                <%= image_tag photo.image, class: "d-block w-100" %>
-                            </div>
-                        <% end %>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
+                <%= image_tag @room.photos.first.image, class:"nav-item", size:"1108x500" %>
             <% else %>
-                <%= image_tag gravatar_for(current_user), alt: current_user.name, class:"mt-3 w-100" %>
+                <%= image_tag gravatar_for(current_user), alt: current_user.name, class:"nav-item", size:"1108x500" %>
             <% end %>
         </div>
-        <div class="col-5 mt-2">
+        <div class="col-5 mt-3">
            <h1><%= @room.listing_name %></h1>
            <%= @room.address %>
         </div>
-        <div class="col-2 mt-2">
+        <div class="col-2 mt-3">
             <%= image_tag gravatar_for(current_user), alt: current_user.name, class:"mt-3" %><br>
-            User Name
+            <div class="ml-2"><%= current_user.name %></div>
         </div>
-        <div class="col-5 mt-2">
+        <div class="col-5 mt-4">
             <div class="card-header">
                 <div class="row">
                     <div class="col-9">
@@ -116,6 +95,35 @@
         <hr class="w-50 ml-1">
         <div class="col-12">
             <h3>Reviews(count)</h3>
+        </div>
+        <hr class="w-50 ml-1">
+        <div class="col-6">
+            <% if @room.photos.length > 0 %>
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <% @room.photos.each do |photo| %>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="<%= photo.id %>"></li>
+                        <% end %>
+                    </ol>
+                    <div class="carousel-inner">
+                        <% @room.photos.each do |photo| %>
+                            <div class="carousel-item <%= photo.id == @room.photos.first.id ? 'active' : '' %>">
+                                <%= image_tag photo.image, class: "d-block w-100" %>
+                            </div>
+                        <% end %>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            <% else %>
+                <%= image_tag gravatar_for(current_user), alt: current_user.name, class:"mt-3 w-100" %>
+            <% end %>
         </div>
         <hr class="w-50 ml-1">
         <div class="col-12">
