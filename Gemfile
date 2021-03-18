@@ -68,3 +68,4 @@ gem 'omniauth-facebook', '~> 4.0'
 gem 'toastr-rails'
 gem 'activestorage'
 gem "font-awesome-rails"
+gem 'geocoder', '~> 1.4'
