@@ -12,11 +12,11 @@ class ReservationsController < ApplicationController
 
     if @reservation.save
       flash[:success] = "Complete your reservation!"
-      redirect_back(fallback_location: request.referer)
     else
       flash[:alert] = "Something is wrong!"
     end
-
+    
+    redirect_back(fallback_location: request.referer)
   end
 
   private
