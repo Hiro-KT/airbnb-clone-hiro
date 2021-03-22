@@ -8,8 +8,12 @@ Rails.application.routes.draw do
       get 'photos'
       get 'amenities'
       get 'location'
+      get 'price'
+      get 'preview'
+      get 'preload'
     end
     resources :photos, only: [:create, :destroy]
+    resources :reservations
   end
 
   devise_for :users, controllers: {
@@ -20,5 +24,5 @@ Rails.application.routes.draw do
   }
 
   resources :users
-  resources :reservations
+
 end
