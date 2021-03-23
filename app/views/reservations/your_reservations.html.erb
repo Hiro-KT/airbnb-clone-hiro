@@ -15,7 +15,7 @@
                                 <div class="reservation-term text-center">
                                     <%= reservation.start_date %>~<%= reservation.end_date %>
                                     <div class="m-2">
-                                        <%= image_tag gravatar_for(current_user), alt: current_user.name, class:"nav-item", size:"35x35" %>
+                                        <%= image_tag gravatar_for(reservation.user), alt: reservation.user.name, class:"nav-item", size:"35x35" %>
                                         <%= link_to reservation.user.name, "#", class:"m-1" %>
                                     </div>
                                 </div>
