@@ -13,7 +13,11 @@
                                     <%= link_to reservation.room.listing_name, "#", class:"m-1" %>
                                 </div>
                                 <div class="reservation-term text-center">
-                                    <%= reservation.start_date %><br>~<%= reservation.end_date %>
+                                    <%= reservation.start_date %>~<%= reservation.end_date %>
+                                    <div class="m-2">
+                                        <%= image_tag gravatar_for(current_user), alt: current_user.name, class:"nav-item", size:"35x35" %>
+                                        <%= link_to reservation.user.name, "#", class:"m-1" %>
+                                    </div>
                                 </div>
                                 <div class="mt-1">
                                     <%= link_to "Review Guest", "#",class:"btn btn-info mt-3 mb-3 w-100" %>
