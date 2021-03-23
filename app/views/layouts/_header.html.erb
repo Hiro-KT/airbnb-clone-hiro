@@ -20,7 +20,7 @@
                     <div class="dropdown-menu mr-3" aria-labelledby="navbarDropdown">
                         <%= link_to "Manage Room", rooms_path, class:"nav-item dropdown-item" %>
                         <%= link_to "Your Reservations", your_reservations_path, class:"nav-item dropdown-item" %>
-                        <%= link_to "Your Trip", "#", class:"nav-item dropdown-item" %>
+                        <%= link_to "Your Trip", your_trips_path, class:"nav-item dropdown-item" %>
                         <div class="dropdown-divider"></div>
                         <%= link_to "Profile", edit_user_registration_path(current_user) , class: "nav-item dropdown-item" %>
                         <%= link_to "Log Out" , destroy_user_session_path , method: :delete , class:"nav-item dropdown-item" %>
