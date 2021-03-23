@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
+  get '/your_reservations', to: 'reservations#your_reservations'
   resources :users
 
 end

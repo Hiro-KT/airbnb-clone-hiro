@@ -15,8 +15,13 @@ class ReservationsController < ApplicationController
     else
       flash[:alert] = "Something is wrong!"
     end
-    
+
     redirect_back(fallback_location: request.referer)
+  end
+
+  def your_reservations
+    @room_ids = current_user.rooms.pluck(:id)     #get all the IDs of Rooms that belong to current_user
+    @reservations = Reservation.where(room_id: @room_ids)   #get all Reservations where the room_id is in @room_ids
   end
 
   private
