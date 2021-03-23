@@ -25,7 +25,6 @@ class ReservationsController < ApplicationController
   end
 
   def your_trips
-    @room_ids = current_user.rooms.pluck(:id)
     @reservations = Reservation.where(user_id: current_user)
   end
 
