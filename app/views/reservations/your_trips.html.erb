@@ -20,7 +20,29 @@
                                     </div>
                                 </div>
                                 <div class="mt-1">
-                                    <%= link_to "Review Host", "#",class:"btn btn-info mt-3 mb-3 w-100" %>
+                                    <button type="button" class="btn btn-info w-100 mt-2 mb-2" data-toggle="modal" data-target="#exampleModal">
+                                        Review Host
+                                    </button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Review Host</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                    <%= form_for @review do |f| %>
+                                                        <div class="modal-body">
+                                                            <%= f.text_area :content, placeholder:"Your Review...", class:"form-control" %>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <%= f.submit "Review Host", class:"btn btn-info" %>
+                                                        </div>
+                                                    <% end %>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         <% end %>
