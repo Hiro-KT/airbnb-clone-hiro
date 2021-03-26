@@ -2,7 +2,7 @@
     <%= form_tag search_path, method: :get do %>
         <%= text_field_tag :start_date, params[:start_date], id:"start_date", class:"m-1" %>
         <%= text_field_tag :end_date, params[:end_date], id:"end_date", disabled: true, class:"m-1" %>
-        <%= text_field_tag :params[:search], params[:address], id:"address", class:"m-1" %>
+        <%= text_field_tag :search, params[:search], id:"address", class:"m-1" %>
         <%= submit_tag "Search", class:"btn btn-info" %>
     <% end %>
 </div>
