@@ -54,3 +54,6 @@ production:
   database: airbnb-clone-hiro_production
   username: airbnb-clone-hiro
   password: <%= ENV['AIRBNB-CLONE-HIRO_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
