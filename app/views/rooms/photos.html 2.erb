@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <%= render "layouts/sidebar" %>
+        <div class="container mt-5 col-8">
+            <div class="card">
+                <div class="card-header"><h5>Photos</h5></div>
+                    <div class="container">
+                        <%= form_for @room, url: photos_room_path(@room), method: "post", html: { :multipart => true }, enctype: 'multipart/form-data' do |f| %>
+                            <div class="col-6">
+                                <%= file_field_tag "photos[]", type: :file, multiple: true, required: true, class:"mt-3" %>
+                            </div>
+                            <div class="col-6">
+                                <%= f.submit "Save", class:"btn btn-info mt-2 mb-2" %>
+                            </div>
+                            <div class="col-10">
+                                <% @photos.each do |photo|%>
+                                    <%=image_tag photo.image, class:"mt-2 mb-2", size:"250x200" %>
+                                    <%= link_to "Delete", room_photo_path(@room, photo), method: :delete, class:"btn btn-danger m-2" %>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

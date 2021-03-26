@@ -1,0 +1,79 @@
+<div class="image-put text-center">
+    <%= form_tag search_path, method: :get do %>
+        <%= text_field_tag :start_date, params[:start_date], id:"start_date", class:"m-1" %>
+        <%= text_field_tag :end_date, params[:end_date], id:"end_date", disabled: true, class:"m-1" %>
+        <%= text_field_tag :search, params[:search], id:"address", class:"m-1" %>
+        <%= submit_tag "Search", class:"btn btn-info" %>
+    <% end %>
+</div>
+<script>
+    $('#start_date').datepicker({
+        dateFormat: 'dd-mm-yy',
+        minDate: 0,
+        maxDate: '3m',
+        onSelect: function(selected) {
+            $('#end_date').datepicker("option", "minDate", selected);
+            $('#end_date').attr("disabled", false);
+        }
+    });
+
+    $('#end_date').datepicker({
+        dateFormat: 'dd-mm-yy',
+        minDate: 0,
+        maxDate: '3m',
+        onSelect: function(selected) {
+            $('#start_date').datepicker("option", "minDate", selected);
+        }
+    });
+</script>
+
+<div class="container">
+    <h3 class="mt-4">Homes</h3>
+    <div class="row justify-centent-around">
+        <% @rooms.each do |room| %>
+            <div class="col-4">
+                <div class="card mt-2 mb-1">
+                    <%= image_tag room.photos.first.image, class:"nav-item mt-2 ml-2", size:"333x220" %>
+                    <%= link_to room.listing_name, room_path(room), class:"nav-item ml-2 mt-1 mb-1" %>
+                    <div class="ml-2 mb-2 text-center">
+                        $<%= room.price %> - <%= room.home_type %> - <%= room.guest_count %> Guest(s)
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+<div class="container">
+    <h3 class="mt-3">Cities</h3>
+    <div class="row">
+
+        <div class="col-3">
+            <%= image_tag '/assets/Vancouver.jpg' , size: "240x160" %>
+        </div>
+
+        <div class="col-3">
+            <%= image_tag '/assets/Germany.jpg' , size: "240x160" %>
+        </div>
+
+        <div class="col-3">
+            <%= image_tag '/assets/Australia.jpg' , size: "240x160" %>
+        </div>
+
+        <div class="col-3">
+            <%= image_tag '/assets/Cebu_city.jpg' , size: "240x160" %>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3 mt-2">Vancouver</div>
+        <div class="col-3 mt-2">Berlin</div>
+        <div class="col-3 mt-2">Sydney</div>
+        <div class="col-3 mt-2">Cebu</div>
+    </div>
+</div>
+
+
+

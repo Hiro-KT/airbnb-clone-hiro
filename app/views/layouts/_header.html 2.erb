@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <%= link_to "Airbnb",  root_path ,class: "navbar-brand" %>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+        <form class="form-inline">
+            <input class="form-control mr-md-2" type="search" placeholder="Where are you going?" aria-label="Search">
+        </form>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <%= link_to "Become a host" , new_room_path , class:"btn btn-outline-success mr-2 mt-2" %>
+            </li>
+
+            <% if user_signed_in? %>
+                <li class="nav-item dropdown mr-3">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <%= image_tag gravatar_for(current_user), alt: current_user.name, class:"nav-item", size:"35x35" %>
+                        <%= current_user.name %>
+                    </a>
+
+                    <div class="dropdown-menu mr-3" aria-labelledby="navbarDropdown">
+                        <%= link_to "Manage Room", rooms_path, class:"nav-item dropdown-item" %>
+                        <%= link_to "Your Reservations", your_reservations_path, class:"nav-item dropdown-item" %>
+                        <%= link_to "Your Trip", your_trips_path, class:"nav-item dropdown-item" %>
+                        <div class="dropdown-divider"></div>
+                        <%= link_to "Profile", edit_user_registration_path(current_user) , class: "nav-item dropdown-item" %>
+                        <%= link_to "Log Out" , destroy_user_session_path , method: :delete , class:"nav-item dropdown-item" %>
+                    </div>
+                </li>
+            <% else %>
+                <li class="nav-item">
+                    <%= link_to "Sign Up", new_user_registration_path , class: "nav-item nav-link mr-1" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Log In" , new_user_session_path , class: "nav-item nav-link mr-1" %>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+</nav>

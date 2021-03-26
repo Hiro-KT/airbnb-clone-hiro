@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <%= render "layouts/sidebar_manage_room" %>
+        <div class="container mt-5 mb-2 col-8">
+            <div class="card">
+                <div class="card-header"><h5>Your Rooms</h5></div>
+                    <div class="container">
+                        <div class="row">
+                            <% @rooms.each do |room| %>
+                                <div class="col-10 mt-2 mb-2">
+                                    <% if room.photos.length > 0 %>
+                                        <%= image_tag room.photos.first.image, class:"nav-item", size:"200x200" %>
+                                    <% else %>
+                                        <%= image_tag gravatar_for(current_user), alt: current_user.name, class:"nav-item", size:"200x200" %>
+                                    <% end %>
+                                    <%= link_to room.listing_name, room_path(room), class:"nav-item btn" %>
+                                </div>
+                                <div class="col-2 mt-5">
+                                    <%= link_to "Update", room_room_path(room) , class:"btn btn-info mt-3" %>
+                                    <%= link_to "Delete" ,room_path(room), method: :delete, class: "btn btn-danger mt-2" %>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

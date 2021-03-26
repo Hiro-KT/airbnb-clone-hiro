@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+    <%= render "layouts/sidebar_manage_room" %>
+        <div class="container mt-5 col-8">
+            <div class="card">
+                <div class="card-header"><h5>Your Trips</h5></div>
+                <div class="container">
+                    <div class="row justify-content-around">
+                        <% @reservations.each do |reservation| %>
+                            <div class="card col-4 m-2">
+                                <div class="reservation-photo">
+                                    <%= image_tag reservation.room.photos.first.image ,size:"210x150", class:"mt-2" %><br>
+                                    <%= link_to reservation.room.listing_name, room_path(reservation.room), class:"m-1" %>
+                                </div>
+                                <div class="reservation-term text-center">
+                                    <%= reservation.start_date %>~<%= reservation.end_date %>
+                                    <div class="m-2">
+                                        <%= image_tag gravatar_for(reservation.room.user), alt: reservation.room.user, class:"nav-item", size:"35x35" %>
+                                        <%= link_to reservation.room.user.name, user_path(reservation.room.user), class:"m-1" %>
+                                    </div>
+                                </div>
+                                <div class="mt-1">
+                                    <button type="button" class="btn btn-info w-100 mt-2 mb-2" data-toggle="modal" data-target="#exampleModal_<%= reservation.id %>">
+                                        Review Host
+                                    </button>
+                                    <div class="modal fade" id="exampleModal_<%= reservation.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Review Host</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                    <%= form_for @review do |f| %>
+                                                        <div class="modal-body">
+                                                            <div class="text-center mt-2 mb-3" id="stars_<%= reservation.id %>"></div>
+                                                            <%= f.hidden_field :reservation_id, value: reservation.id %>
+                                                            <%= f.text_area :content, placeholder:"Your Review...", class:"form-control" %>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <%= f.submit "Review Host", class:"btn btn-info" %>
+                                                        </div>
+                                                        <script>
+                                                            $('#stars_<%= reservation.id %>').raty({
+                                                                path: 'assets',
+                                                                scoreName: 'review[rating]',
+                                                                score: 1
+                                                            });
+                                                        </script>
+                                                    <% end %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

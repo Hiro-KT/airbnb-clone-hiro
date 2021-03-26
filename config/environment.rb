@@ -7,7 +7,7 @@ Rails.application.initialize!
 ActionMailer::Base.smtp_settings = {
   :user_name => 'apikey',
   :password => Rails.application.credentials.sendgrid[:password],
-  :domain => 'http://localhost:3002',
+  :domain => 'https://airbnb-clone-hiro.herokuapp.com/',
   :address => 'smtp.sendgrid.net',
   :port => 587,
   :authentication => :plain,

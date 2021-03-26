@@ -1,0 +1,27 @@
+<div class="container mt-5 col-3">
+    <div class="card" style="width: 15rem">
+        <div class="col mt-3">
+            <%=link_to "Room", room_room_path(@room), class:"color-info" %>
+        </div>
+        <div class="col mt-3">
+            <%=link_to "Price", price_room_path(@room), class:"color-info" %>
+        </div>
+        <div class="col mt-3">
+            <%=link_to "Description", description_room_path(@room), class:"color-info" %>
+        </div>
+        <div class="col mt-3">
+            <%=link_to "Photos", photos_room_path(@room), class:"color-info" %>
+        </div>
+        <div class="col mt-3">
+            <%=link_to "Amenities", amenities_room_path(@room), class:"color-info" %>
+        </div>
+        <div class="col mt-3">
+            <%=link_to "Location", location_room_path(@room), class:"color-info" %>
+        </div>
+        <hr class="m-2">
+        <%= form_for @room do |f| %>
+            <%= f.hidden_field :is_active, value: true %>
+            <%= f.submit "Publish",class:"btn btn-info mt-1 mb-1 w-100", disabled: !is_ready?(@room) %>
+        <% end %>
+    </div>
+</div>

@@ -1,0 +1,265 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <% if @room.photos.length > 0 %>
+                <%= image_tag @room.photos.first.image, class:"nav-item", size:"1108x500" %>
+            <% else %>
+                <%= image_tag gravatar_for(current_user), alt: current_user.name, class:"nav-item", size:"1108x500" %>
+            <% end %>
+        </div>
+        <div class="col-5 mt-3">
+           <h1><%= @room.listing_name %></h1>
+           <%= @room.address %>
+        </div>
+        <div class="col-2 mt-3">
+            <%= image_tag gravatar_for(current_user), alt: current_user.name, class:"mt-3" %><br>
+            <div class="ml-2"><%= current_user.name %></div>
+        </div>
+        <div class="col-5 mt-4">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-9">
+                        $<%= @room.price %>
+                    </div>
+                    <div class="col-3">Per Night</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <p id="message"></p>
+                    <%= form_for [@room, @reservation] do |f| %>
+                        <div class="row">
+                            <div class="col-6">
+                                <%= f.label :check_in%>
+                                <%= f.text_field :start_date, id: "start_date" %>
+                            </div>
+                            <div class="col-6">
+                                <%= f.label :check_out %>
+                                <%= f.text_field :end_date, id: "end_date", disabled: true %>
+                            </div>
+                            <div class="container mt-2" id="preview" style="display: none;">
+                                <%= f.hidden_field :price, value: @room.price %>
+                                <div>Price: $ <%= @room.price %></div>
+                                <div class="mt-1 mb-1">Night(s): <span id="total_nights"></span></div>
+                                <div class="mt-1 mb-1">Total: $ <span id="total_price"></span> </div>
+                            </div>
+                            <div class="col-12">
+                                <%= f.submit "Book Now", class:"btn btn-info mt-2 mb-2 w-100", id: "submit", disabled: true %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <hr class="w-50 ml-1">
+        <div class="col-10">
+            <h3>About this room</h3>
+            <div class="mb-5"><%= @room.summary %></div>
+            <div class="container">
+                <div class="row mr-5">
+                    <div class="col-2 text-center">
+                            <i class="fa fa-home"></i>
+                            <br><%= @room.home_type %>
+                    </div>
+                    <div class="col-2 text-center">
+                        <i class="fa fa-user"></i><br>
+                        <%= @room.guest_count %> Guests
+                    </div>
+                    <div class="col-2 text-center">
+                        <i class="fa fa-bed"></i>
+                        <br><%= @room.bedroom_count %> Bedrooms
+                    </div>
+                    <div class="col-2 text-center">
+                        <i class="fa fa-bath"></i>
+                        <br><%= @room.bathroom_count %> bathrooms
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="w-50 ml-1">
+        <div class="col-10">
+            <h3>Amenities</h3>
+            <div class="row">
+                <div class="m-3">
+                    <span class=<%= @room.has_tv ? "" : "line-through" %>>TV</span>
+                </div>
+                <div class="m-3">
+                    <span class=<%= @room.has_kitchen ? "" : "line-through" %>>Kitchen</span>
+                </div>
+                <div class="m-3">
+                    <span class=<%= @room.has_internet ? "" : "line-through" %>>Internet</span>
+                </div>
+                <div class="m-3">
+                    <span class=<%= @room.has_heating ? "" : "line-through" %>>Heating</span>
+                </div>
+                <div class="m-3">
+                    <span class=<%= @room.has_air_conditioning ? "" : "line-through" %>>Air Conditioning</span>
+                </div>
+            </div>
+        </div>
+        <hr class="w-50 ml-1">
+        <div class="col-12">
+            <h3>Reviews(count)</h3>
+        </div>
+        <hr class="w-50 ml-1">
+        <div class="col-6">
+            <% if @room.photos.length > 0 %>
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <% @room.photos.each do |photo| %>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="<%= photo.id %>"></li>
+                        <% end %>
+                    </ol>
+                    <div class="carousel-inner">
+                        <% @room.photos.each do |photo| %>
+                            <div class="carousel-item <%= photo.id == @room.photos.first.id ? 'active' : '' %>">
+                                <%= image_tag photo.image, class: "d-block w-100" %>
+                            </div>
+                        <% end %>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            <% else %>
+                <%= image_tag gravatar_for(current_user), alt: current_user.name, class:"mt-3 w-100" %>
+            <% end %>
+        </div>
+        <hr class="w-50 ml-1">
+        <div class="col-12 mb-3">
+            <h3>Map</h3>
+            <div id="map"></div>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeZ_5P_uvascVJkscqSOhw9iupee5XVO4"></script>
+
+            <script>
+                function initialize() {
+                    var location = { lat: Number("<%= @room.latitude %>"), lng: Number("<%= @room.longitude %>") };
+
+                    var map = new google.maps.Map(document.getElementById("map"), {
+                        center: location,
+                        zoom: 14
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: location,
+                        map: map
+                    });
+
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: '<div id="content"><%= image_tag @room.photos.first.image %></div>'
+                    });
+
+                    infoWindow.open(map, marker);
+                }
+
+                google.maps.event.addDomListener(window, 'load', initialize)
+            </script>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function checkDate(date) {
+        dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+        return [$.inArray(dmy, unavailableDates) == -1];
+    }
+    $(function() {
+        unavailableDates = [];
+
+        $.ajax({
+            url: '<%= preload_room_path(@room) %>',
+            dataType: 'json',
+            success: function(data) {
+                $.each(data, function(arrID, arrValue){
+                    for(var d = new Date(arrValue.start_date); d <= new Date(arrValue.end_date); d.setDate(d.getDate() + 1)){
+                        unavailableDates.push($.datepicker.formatDate('d-m-yy', d));
+                    }
+                });
+
+                $("#start_date").datepicker({
+                    dateFormat: 'dd-mm-yy',
+                    minDate: 0,
+                    maxDate: '3m',
+                    beforeShowDay: checkDate,
+                    onSelect: function(selected) {
+                        $("#end_date").datepicker("option", "minDate", selected);
+                        $("#end_date").attr("disabled", false);
+
+                        var start_date = $("#start_date").datepicker('getDate');
+                        var end_date = $("#end_date").datepicker('getDate');
+                        var nights = (end_date - start_date)/1000/60/60/24;
+
+                        var input = {
+                            'start_date': start_date,
+                            'end_date': end_date
+                        }
+
+                        $.ajax({
+                            url: '<%= preview_room_path(@room) %>',
+                            data: input,
+                            success: function(data) {
+                                if (data.conflict) {
+                                    $( "#message" ).text( "These dates are not available." );
+                                    $( "#preview" ).hide();
+                                    $( "#submit" ).attr("disabled", true);
+                                } else {
+                                    $( "#message" ).text("");
+                                    $( "#preview" ).show();
+                                    $( "#submit" ).attr("disabled", false);
+
+                                    var total_price =  nights * <%= @room.price %>;
+                                    $( "#total_nights" ).text(nights);
+                                    $( "#total_price" ).text( total_price );
+                                }
+                            }
+                        });
+                    }
+                });
+
+                $("#end_date").datepicker({
+                    dateFormat: 'dd-mm-yy',
+                    minDate: 0,
+                    maxDate: '3m',
+                    beforeShowDay: checkDate,
+                    onSelect: function(selected) {
+                        $('#start_date').datepicker("option", "maxDate", selected);
+
+                        var start_date = $("#start_date").datepicker('getDate');
+                        var end_date = $("#end_date").datepicker('getDate');
+                        var nights = (end_date - start_date)/1000/60/60/24;
+
+                        var input = {
+                            'start_date': start_date,
+                            'end_date': end_date
+                        }
+
+                        $.ajax({
+                            url: '<%= preview_room_path(@room) %>',
+                            data: input,
+                            success: function(data) {
+                                if (data.conflict) {
+                                    $( "#message" ).text( "These dates are not available." );
+                                    $( "#preview" ).hide();
+                                    $( "#submit" ).attr("disabled", true);
+                                } else {
+                                    $( "#message" ).text("");
+                                    $( "#preview" ).show();
+                                    $( "#submit" ).attr("disabled", false);
+
+                                     var total_price =  nights * <%= @room.price %>;
+                                    $( "#total_nights" ).text(nights);
+                                    $( "#total_price" ).text( total_price );
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>

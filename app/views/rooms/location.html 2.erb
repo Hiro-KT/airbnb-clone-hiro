@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <%= render "layouts/sidebar" %>
+        <div class="container mt-5 col-8">
+            <div class="card">
+                <div class="card-header"><h5>Location</h5></div>
+                <div class="container">
+                    <%= form_for @room do |f| %>
+                        <div class="row">
+                            <div class="col-12">
+                                <%= f.label :address, class:"mt-2" %><br>
+                                <%= f.text_field :address, placeholder:"What is the address?", class:"form-control mb-4 w-100" %>
+                            </div>
+                            <div class="col-12">
+                                <%= f.submit "Save", class:"btn btn-info mb-4" %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
