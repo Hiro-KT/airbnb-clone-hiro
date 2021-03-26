@@ -4,96 +4,96 @@
 <div class="collapse" id="collapseExample">
     <div class="container">
         <div class="card card-body m-1">
-            <%= form_tag search_path, method: :get do %>
+            <%= search_form_for @search, url: search_path do |f| %>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <%= label_tag :price_range %>
-                        <input type="range" class="custom-range" min="0" max="500" id="customRange2">
+                        <%= f.label :range, "Price Range" %>
+                        <div id="slider-range"></div>
                     </div>
                     <div class="col-3 mb-3">
-                        <%= label_tag :min_price %>:
-                        <%= text_field_tag :price, "", id:"price", placeholder:"5000", class:"form-control w-100" %>
+                        <%= f.label :price, "Min Price:" %>
+                        <%= f.text_field :price_gteq, id: "amountMin" %>
                     </div>
                     <div class="col-3 mb-3">
-                        <%= label_tag :max_price %>:
-                        <%= text_field_tag :price, "", id:"price", placeholder:"10000", class:"form-control w-100" %>
+                        <%= f.label :price, "Max Price:" %>
+                        <%= f.text_field :price_lteq, id: "amountMax" %>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col-6">
-                        <%= text_field_tag :start_date, params[:start_date], placeholder:"Start Date" ,id:"start_date", class:"m-1" %>
+                        <%= text_field_tag :start_date, params[:start_date], class:"m-1" %>
                     </div>
                     <div class="col-6">
-                        <%= text_field_tag :end_date, params[:end_date], placeholder:"End Date" ,id:"end_date", class:"m-1" %>
+                        <%= text_field_tag :end_date, params[:end_date], class:"m-1" %>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col-4">
-                        <%= check_box_tag :home_type, value:"Apartment", class:"mt-2" %>
-                        <%= label_tag :apartment %>
+                        <%= check_box_tag "q[home_type_eq_any][]", "Apartment", class:"mt-2" %>
+                        <%= f.label :home_type, "apartment" %>
                     </div>
                     <div class="col-4">
-                        <%= check_box_tag :home_type, value:"House", class:"mt-2" %>
-                        <%= label_tag :house %>
+                        <%= check_box_tag "q[home_type_eq_any][]", "House", class:"mt-2" %>
+                        <%= f.label :home_type, "house" %>
                     </div>
                     <div class="col-4">
-                        <%= check_box_tag :home_type, value:"Bed & Breakfast", class:"mt-2" %>
-                        <%= label_tag :bed_breakfast %>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-4">
-                        <%= check_box_tag :room_type, value:"Entire", class:"mt-2" %>
-                        <%= label_tag :entire_room %>
-                    </div>
-                    <div class="col-4">
-                        <%= check_box_tag :room_type, value:"Private", class:"mt-2" %>
-                        <%= label_tag :private %>
-                    </div>
-                    <div class="col-4">
-                        <%= check_box_tag :room_type, value:"Shared", class:"mt-2" %>
-                        <%= label_tag :shared %>
+                        <%= check_box_tag "q[home_type_eq_any][]", "Bed & Breakfast", class:"mt-2" %>
+                        <%= f.label :home_type, "bed_breakfast" %>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col-4">
-                        <%= label_tag :guests %><br>
-                        <%= select_tag :guest_count, options_for_select([['1': '1'], ['2': '2'], ['3': '3'], ['4+': '4+']]), include_blank: 'Select...', class: 'form-control' %>
+                        <%= check_box_tag "q[room_type_eq_any][]", "Entire", class:"mt-2" %>
+                        <%= f.label :room_type, "Entire" %>
                     </div>
                     <div class="col-4">
-                        <%= label_tag :bedrooms %><br>
-                        <%= select_tag :bedroom_count, options_for_select([['1': '1'], ['2': '2'], ['3': '3'], ['4+': '4+']]), include_blank: 'Select...', class: 'form-control' %>
+                        <%= check_box_tag "q[room_type_eq_any][]", "Private", class:"mt-2" %>
+                        <%= label_tag :room_type, "Private" %>
                     </div>
                     <div class="col-4">
-                        <%= label_tag :bathrooms %><br>
-                        <%= select_tag :bathroom_count, options_for_select([['1': '1'], ['2': '2'], ['3': '3'], ['4+': '4+']]), include_blank: 'Select...', class: 'form-control' %>
+                        <%= check_box_tag "q[room_type_eq_any][]", "Shared", class:"mt-2" %>
+                        <%= f.label :room_type, "Shared" %>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col-4">
-                        <%= check_box_tag :has_tv, "", id:"has_tv", class:"mt-2" %>
-                        <%= label_tag :television %>
+                        <%= f.label :guest_count, "Guests" %><br>
+                        <%= f.select :guest_count_gteq, {'1': '1', '2': '2', '3': '3', '4+': '4+'}, {include_blank: 'Select...'}, {class: 'form-control'} %>
                     </div>
                     <div class="col-4">
-                        <%= check_box_tag :has_kitchen, "", id:"has_kitchen", class:"mt-2" %>
-                        <%= label_tag :kitchen %>
+                        <%= f.label :bedrooms, "Bedrooms" %><br>
+                        <%= f.select :bedroom_count_gteq, {'1': '1', '2': '2', '3': '3', '4+': '4+'}, {include_blank: 'Select...'}, {class: 'form-control'} %>
                     </div>
                     <div class="col-4">
-                        <%= check_box_tag :has_internet, "", id:"has_internet", class:"mt-2" %>
-                        <%= label_tag :internet %>
+                        <%= f.label :bathrooms, "Bathrooms" %><br>
+                        <%= f.select :bathroom_count_gteq, {'1': '1', '2': '2', '3': '3', '4+': '4+'}, {include_blank: 'Select...'}, {class: 'form-control'} %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-4">
+                        <%= check_box_tag "q[has_tv_eq]", class:"mt-2" %>
+                        <%= f.label :has_tv, "Television" %>
                     </div>
                     <div class="col-4">
-                        <%= check_box_tag :has_heating, "", id:"has_heating", class:"mt-2" %>
-                        <%= label_tag :heating %>
+                        <%= check_box_tag "q[has_kitchen_eq]", class:"mt-2" %>
+                        <%= f.label :has_kitchen, "Kitchen" %>
                     </div>
                     <div class="col-4">
-                        <%= check_box_tag :has_air_conditioning, "", id:"has_air_conditioning", class:"mt-2" %>
-                        <%= label_tag :air_conditioning %>
+                        <%= check_box_tag "q[has_internet_eq]", class:"mt-2" %>
+                        <%= f.label :has_internet, "Internet" %>
+                    </div>
+                    <div class="col-4">
+                        <%= check_box_tag "q[has_heating_eq]", class:"mt-2" %>
+                        <%= f.label :has_heating, "Heating" %>
+                    </div>
+                    <div class="col-4">
+                        <%= check_box_tag "q[has_air_conditioning_eq]", class:"mt-2" %>
+                        <%= f.label :has_air_conditioning, "Air conditioning" %>
                     </div>
                 </div>
                 <hr>
@@ -103,8 +103,44 @@
     </div>
 </div>
 
+<div class="container">
+    <h3 class="mt-4">Result</h3>
+    <hr>
+    <div class="row justify-centent-around">
+        <% @rooms_array.each do |room| %>
+            <div class="col-4">
+                <div class="card mt-2 mb-1">
+                    <%= image_tag room.photos.first.image, class:"nav-item mt-2 ml-2", size:"333x220" %>
+                    <h5><%= link_to room.listing_name, room_path(room), class:"nav-item ml-2 mt-1 mb-1" %></h5>
+                    <div class="ml-2 mb-2 text-center">
+                        $<%= room.price %> - <%= room.home_type %> - <%= room.guest_count %> Guest(s)
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
-     $('#start_date').datepicker({
+    $(function() {
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 1000,
+            values: [100, 1000],
+            slide: function( event, ui ) {
+                $( "#amountMin" ).val( ui.values[ 0 ] );
+                $( "#amountMax" ).val( ui.values[ 1 ] );
+            }
+        });
+        $( "#amountMin" ).val( $( "#slider-range" ).slider( "values", 0 ) );
+        $( "#amountMax" ).val( $( "#slider-range" ).slider( "values" , 1) );
+    });
+
+    $('#start_date').datepicker({
         dateFormat: 'dd-mm-yy',
         minDate: 0,
         maxDate: '3m',

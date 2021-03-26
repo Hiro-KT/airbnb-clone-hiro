@@ -1,7 +1,7 @@
 <div class="image-put text-center">
     <%= form_tag search_path, method: :get do %>
         <%= text_field_tag :start_date, params[:start_date], id:"start_date", class:"m-1" %>
-        <%= text_field_tag :end_date, params[:end_date], id:"end_date", disabled: true, class:"m-1" %>
+        <%= text_field_tag :end_date, params[:end_date], id:"end_date", class:"m-1" %>
         <%= text_field_tag :search, params[:search], id:"address", class:"m-1" %>
         <%= submit_tag "Search", class:"btn btn-info" %>
     <% end %>
@@ -22,7 +22,7 @@
         minDate: 0,
         maxDate: '3m',
         onSelect: function(selected) {
-            $('#start_date').datepicker("option", "minDate", selected);
+            $('#start_date').datepicker("option", "maxDate", selected);
         }
     });
 </script>
