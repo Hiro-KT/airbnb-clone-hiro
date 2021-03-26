@@ -1,0 +1,126 @@
+<p>
+    <button class="btn btn-info m-3" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">More Filter</button>
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="container">
+        <div class="card card-body m-1">
+            <%= form_tag search_path, method: :get do %>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <%= label_tag :price_range %>
+                        <input type="range" class="custom-range" min="0" max="500" id="customRange2">
+                    </div>
+                    <div class="col-3 mb-3">
+                        <%= label_tag :min_price %>:
+                        <%= text_field_tag :price, "", id:"price", placeholder:"5000", class:"form-control w-100" %>
+                    </div>
+                    <div class="col-3 mb-3">
+                        <%= label_tag :max_price %>:
+                        <%= text_field_tag :price, "", id:"price", placeholder:"10000", class:"form-control w-100" %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <%= text_field_tag :start_date, params[:start_date], placeholder:"Start Date" ,id:"start_date", class:"m-1" %>
+                    </div>
+                    <div class="col-6">
+                        <%= text_field_tag :end_date, params[:end_date], placeholder:"End Date" ,id:"end_date", class:"m-1" %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-4">
+                        <%= check_box_tag :home_type, value:"Apartment", class:"mt-2" %>
+                        <%= label_tag :apartment %>
+                    </div>
+                    <div class="col-4">
+                        <%= check_box_tag :home_type, value:"House", class:"mt-2" %>
+                        <%= label_tag :house %>
+                    </div>
+                    <div class="col-4">
+                        <%= check_box_tag :home_type, value:"Bed & Breakfast", class:"mt-2" %>
+                        <%= label_tag :bed_breakfast %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-4">
+                        <%= check_box_tag :room_type, value:"Entire", class:"mt-2" %>
+                        <%= label_tag :entire_room %>
+                    </div>
+                    <div class="col-4">
+                        <%= check_box_tag :room_type, value:"Private", class:"mt-2" %>
+                        <%= label_tag :private %>
+                    </div>
+                    <div class="col-4">
+                        <%= check_box_tag :room_type, value:"Shared", class:"mt-2" %>
+                        <%= label_tag :shared %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-4">
+                        <%= label_tag :guests %><br>
+                        <%= select_tag :guest_count, options_for_select([['1': '1'], ['2': '2'], ['3': '3'], ['4+': '4+']]), include_blank: 'Select...', class: 'form-control' %>
+                    </div>
+                    <div class="col-4">
+                        <%= label_tag :bedrooms %><br>
+                        <%= select_tag :bedroom_count, options_for_select([['1': '1'], ['2': '2'], ['3': '3'], ['4+': '4+']]), include_blank: 'Select...', class: 'form-control' %>
+                    </div>
+                    <div class="col-4">
+                        <%= label_tag :bathrooms %><br>
+                        <%= select_tag :bathroom_count, options_for_select([['1': '1'], ['2': '2'], ['3': '3'], ['4+': '4+']]), include_blank: 'Select...', class: 'form-control' %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-4">
+                        <%= check_box_tag :has_tv, "", id:"has_tv", class:"mt-2" %>
+                        <%= label_tag :television %>
+                    </div>
+                    <div class="col-4">
+                        <%= check_box_tag :has_kitchen, "", id:"has_kitchen", class:"mt-2" %>
+                        <%= label_tag :kitchen %>
+                    </div>
+                    <div class="col-4">
+                        <%= check_box_tag :has_internet, "", id:"has_internet", class:"mt-2" %>
+                        <%= label_tag :internet %>
+                    </div>
+                    <div class="col-4">
+                        <%= check_box_tag :has_heating, "", id:"has_heating", class:"mt-2" %>
+                        <%= label_tag :heating %>
+                    </div>
+                    <div class="col-4">
+                        <%= check_box_tag :has_air_conditioning, "", id:"has_air_conditioning", class:"mt-2" %>
+                        <%= label_tag :air_conditioning %>
+                    </div>
+                </div>
+                <hr>
+                <%= submit_tag "Search", class:"btn btn-info" %>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<script>
+     $('#start_date').datepicker({
+        dateFormat: 'dd-mm-yy',
+        minDate: 0,
+        maxDate: '3m',
+        onSelect: function(selected) {
+            $('#end_date').datepicker("option", "minDate", selected);
+            $('#end_date').attr("disabled", false);
+        }
+    });
+
+    $('#end_date').datepicker({
+        dateFormat: 'dd-mm-yy',
+        minDate: 0,
+        maxDate: '3m',
+        onSelect: function(selected) {
+            $('#start_date').datepicker("option", "minDate", selected);
+            $('#start_date').attr("disabled", false);
+        }
+    });
+</script>

@@ -58,6 +58,19 @@ class RoomsController < ApplicationController
     end
   end
 
+  def destroy
+    @room = Room.find(params[:id])
+
+    if @room.destroy
+      flash[:success] = "Delete!"
+    else
+      flash[:alert] = "Something is wrong!"
+    end
+
+    redirect_back(fallback_location: request.referer)
+  end
+
+
   def preload
     @room = Room.find(params[:id])
     today = Date.today
@@ -80,7 +93,7 @@ class RoomsController < ApplicationController
 
   private
   def room_params
-    params.require(:room).permit(:home_type, :room_type, :guest_count, :bedroom_count, :bathroom_count, :price, :listing_name, :summary, :address, :has_tv, :has_kitchen, :has_internet, :has_heating, :has_air_conditioning)
+    params.require(:room).permit(:home_type, :room_type, :guest_count, :bedroom_count, :bathroom_count, :price, :listing_name, :summary, :address, :has_tv, :has_kitchen, :has_internet, :has_heating, :has_air_conditioning, :is_active)
   end
 
   def is_conflict(start_date, end_date, room)
