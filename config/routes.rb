@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#home'
+  get '/search' => 'pages#search'
   resources :rooms do
     member do
       get 'room'
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
 
   get '/your_reservations', to: 'reservations#your_reservations'
   get '/your_trips', to: 'reservations#your_trips'
+  
   resources :users
   resources :reviews
 end
